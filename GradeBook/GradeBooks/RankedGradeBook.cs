@@ -49,5 +49,25 @@ namespace GradeBook.GradeBooks
             List<Student> SortedByGrade = Students.OrderBy(s => s.AverageGrade).ToList();
             return SortedByGrade.FindIndex(s => s.AverageGrade == averageGrade);
         }
+
+        public override void CalculateStatistics()
+        {
+            if (base.Students.Count<5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+                return;
+            }
+            base.CalculateStatistics();
+        }
+
+        public override void CalculateStudentStatistics(string name)
+        {
+            if (base.Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+                return;
+            }
+            base.CalculateStudentStatistics(name);
+        }
     }
 }
